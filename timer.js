@@ -24,7 +24,7 @@ startButton.addEventListener('click', function(){
     if (startButton.textContent == 'start'){
         progressBar.style.width = '0%';
         animateBar(focusTime);
-        tip.innerHTML = "Current session rewards: " + Math.round(Math.pow(Number(focusTimeHTML.value), 1.05)) + " coin(s)";
+        tip.innerHTML = "current session rewards: " + Math.round(Math.pow(Number(focusTime/60), 1.05)) + " coin(s)";
         startButton.textContent = 'give up';
         timeLeft = focusTime;
         console.log(`timeLeft: ${timeLeft}`); // Log the value of timeLeft
@@ -91,6 +91,7 @@ document.addEventListener('mousemove', function() {
            
         }, 1000); 
     }else{
+       
         div.style.opacity = 0;
     }
    
@@ -105,15 +106,22 @@ function timer() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = Math.floor(timeLeft % 60);
     timerP.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    if (timeLeft == 0) {
-        startButton.textContent = 'Start';
+    if (timeLeft <= 0) {
+        startButton.textContent = 'start';
        
         clearInterval(intervalId);
         closeBar();
         const focusTime = Number(focusTimeHTML.value);
+        if (isNaN(focusTime) || focusTime <= 0) {
+            focusTime = 25 * 60;
+            //return;
+        }
+        
+
         window.coins += Math.pow(focusTime, 1.05);
         window.coins = Math.round(window.coins);
-        tip.innerHTML = "you did it! you earned: " + window.coins +" coin(s)!";
+        window.coinButton.textContent = window.coins;
+        tip.innerHTML = "you did it! you earned: " + Math.round(Math.pow(focusTime,1.05)) +" coin(s)!";
         console.log(`current coins: ${window.coins}`);
     }
 }

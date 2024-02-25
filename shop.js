@@ -15,7 +15,7 @@ const shopMainButton = document.querySelector('#shopButton');
 const shopContainer = document.querySelector('#shop-container');
 const storageMainButton = document.querySelector('#invButton');
 const storageContainer = document.querySelector('#storage-container');
-const coinButton = document.querySelector('#coinDisplay');
+window.coinButton = document.querySelector('#coinDisplay');
 const storageButton1 = document.querySelector('#tree-storage');
 const storageButton2 = document.querySelector('#rock-storage');
 const storageButton3 = document.querySelector('#house-storage');
@@ -38,7 +38,7 @@ flowerStorageCount.textContent = 'x' + (window.purchasedItems[key4] || 0);
 pathStorageCount.textContent = 'x' + (window.purchasedItems[key5] || 0);
 
 import anime from 'animejs/lib/anime.es.js';
-coinButton.textContent = window.coins;
+window.coinButton.textContent = window.coins;
 
 // coinButton.addEventListener('click', function(){
 //     coinButton.textContent(window.coins);
@@ -146,6 +146,7 @@ settingsButton.addEventListener('click', function(){
         shopContainer.style.zIndex = "10";
         storageContainer.style.opacity = "0";
         storageContainer.style.zIndex = "-10";
+        timeFrame.style.zIndex = "-10";
         window.initializedShop = true;
         
         anime ({
@@ -157,7 +158,8 @@ settingsButton.addEventListener('click', function(){
 
    }else { shopContainer.style.opacity = "0";
         shopContainer.style.zIndex = "-10";
-        window.initializedShop = true;
+        timeFrame.style.zIndex = "0";
+        window.initializedShop = false;
         anime ({
             targets: timeFrame,
             opacity: 1,
@@ -173,6 +175,7 @@ settingsButton.addEventListener('click', function(){
         storageContainer.style.opacity = "1";
         storageContainer.style.zIndex = "10";
         window.initializedShop = true;
+        timeFrame.style.zIndex = "-10";
         shopContainer.style.opacity = "0";
         shopContainer.style.zIndex = "-10";
         anime ({
@@ -185,6 +188,7 @@ settingsButton.addEventListener('click', function(){
    }else { 
         storageContainer.style.opacity = "0";
         storageContainer.style.zIndex = "-10";
+        timeFrame.style.zIndex = "0";
         window.initializedShop = false;
         anime ({
             targets: timeFrame,
@@ -202,6 +206,8 @@ storageButton1.addEventListener('click', function(){
     if (window.purchasedItems.hasOwnProperty(key1) && window.purchasedItems[key1] > 0) {
         window.purchasedItems[key1]--; // Decrement the count
         console.log("object created");
+        window.fileName = "untitqled.glb";
+        window.placeable = true;
 
         treeStorageCount.textContent = 'x' + window.purchasedItems[key1];
 

@@ -155,25 +155,31 @@ window.fileName = "";
 window.placeable = false;
 window.addEventListener('click', function(event) {
   if(placeable){
+    
     if (index != null)
     {
       // create boolean placing to check if you are able to place(only if in grid or if in )
       //create another variable that is a string, provides the director of the model.
+      console.log(window.fileName);
       placeable = false;
       loader.load(
         window.fileName,
         function (gltf) {
           // When the model is loaded, add it to the existing scene
-          gltf.scene.position.x = cubesArray[index[0]][index[1]].position.x -size / 2;
-          gltf.scene.position.y = cubesArray[index[0]][index[1]].position.y - size / 2;
-          cube.position.z = 0.5;
+          var cube = cubesArray[index[0]][index[1]];
+          var box = new THREE.Box3().setFromObject(cube);
+
+          var center = new THREE.Vector3();
+          box.getCenter(center);
+          gltf.scene.position.copy(center);
+          gltf.scene.position.x += gltf.scene.scale.x/3.5;
+          gltf.scene.position.y -= .1;
+          gltf.scene.position.z = 0.5;
+          gltf.scene.scale.set(0.3, 0.3, 0.3);
+          console.log(gltf.scene.position);
           scene.add(gltf.scene);
-        },
-        undefined,
-        function (error) {
-          console.error(error);
-        }
-      );
+        
+        });
       // var geometry = new THREE.BoxGeometry(1, 1, 1);
       // var material = new THREE.MeshLambertMaterial({ color: colorGrid2 });
       // var cube = new THREE.Mesh(geometry, material);
