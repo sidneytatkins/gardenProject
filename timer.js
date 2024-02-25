@@ -21,19 +21,19 @@ startButton.addEventListener('click', function(){
     }
     
     
-    if (startButton.textContent == 'Start'){
+    if (startButton.textContent == 'start'){
         progressBar.style.width = '0%';
         animateBar(focusTime);
         tip.innerHTML = "Current session rewards: " + Math.round(Math.pow(Number(focusTimeHTML.value), 1.05)) + " coin(s)";
-        startButton.textContent = 'Give up';
+        startButton.textContent = 'give up';
         timeLeft = focusTime;
         console.log(`timeLeft: ${timeLeft}`); // Log the value of timeLeft
         intervalId = setInterval(timer, 1000);
     } else {
     closeBar(); 
     progressBar.style.width = '0%';
-    tip.innerHTML = "You lost out on your reward! Try again!";
-    startButton.textContent = 'Start';
+    tip.innerHTML = "you lost out on your reward. try again!";
+    startButton.textContent = 'start';
 
     const minutes = Math.floor((focusTime) / 60);
     const seconds = Math.floor((focusTime) % 60);
@@ -52,15 +52,15 @@ setButton.addEventListener('click', function(){
 
     closeBar(); 
     progressBar.style.width = '0%';
-    tip.innerHTML = "Do your best! You can do it!";
+    tip.innerHTML = "do your best! you can do it!";
     const minutes = Math.floor((focusTime * 60) / 60);
     const seconds = Math.floor((focusTime * 60) % 60);
     timerP.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
  
 
-    if (startButton.textContent == 'Give up'){
+    if (startButton.textContent == 'give up'){
         clearInterval(intervalId);
-        startButton.textContent = 'Start';
+        startButton.textContent = 'start';
 
     }
 
@@ -101,7 +101,7 @@ function timer() {
         const focusTime = Number(focusTimeHTML.value);
         coins += Math.pow(focusTime, 1.05);
         coins = Math.round(coins);
-        tip.innerHTML = "You did it! You earned:" + coins +"!";
+        tip.innerHTML = "you did it! you earned: " + coins +" coin(s)!";
         console.log(`current coins: ${coins}`);
     }
 }
