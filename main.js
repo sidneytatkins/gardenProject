@@ -74,8 +74,6 @@ for (var i = 0; i < size; i++)
   cubesArray.push(row);
 }
 
-cubeGroup.position.set(-size / 2, -size / 2, 0);
-
 var block = new THREE.BoxGeometry(1,1,1);
 
 // GRID MANIPULATION

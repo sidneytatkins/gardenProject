@@ -14,10 +14,10 @@ window.coins = 0;
 
 startButton.addEventListener('click', function(){
    
-    const focusTime = Number(focusTimeHTML.value) * 60; 
+    var focusTime = Number(focusTimeHTML.value) * 60; 
     if (isNaN(focusTime) || focusTime <= 0) {
-        alert('Please enter a valid focus time in minutes');
-        return;
+        focusTime = 25 * 60;
+        //return;
     }
     
     
