@@ -260,8 +260,11 @@ canvas {
 
   #shop-container{
     width: 100%;
-    height: 10rem;
-    background-color: var(--color-text-primary);
+    height: 8rem;
+    position: fixed;
+    left: 0;
+    bottom: 0; 
+    background-color: #191c1a7d;
     opacity: 1;
     display: flex;
     justify-content: center;
@@ -270,7 +273,7 @@ canvas {
     gap: .4rem;
   }
   #tree-item{
-    width: 9rem;
+    width: 7rem;
     height: 95%;
     background-color: var(--color-secondary);
     display: flex;
@@ -280,7 +283,7 @@ canvas {
     
   }
   #rock-item{
-    width: 9rem;
+    width: 7rem;
     height: 95%;
     background-color: var(--color-secondary);
     display: flex;
@@ -290,7 +293,7 @@ canvas {
     
   }
   #flower-item{
-    width: 9rem;
+    width: 7rem;
     height: 95%;
     background-color: var(--color-secondary);
     display: flex;
@@ -300,7 +303,7 @@ canvas {
     
   }
   #path-item{
-    width: 9rem;
+    width: 7rem;
     height: 95%;
     background-color: var(--color-secondary);
     display: flex;
@@ -310,7 +313,7 @@ canvas {
     
   }
   #house-item{
-    width: 9rem;
+    width: 7rem;
     height: 95%;
     background-color: var(--color-secondary);
     display: flex;
@@ -323,13 +326,13 @@ canvas {
 
   .name{
     margin-left: .25rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--color-text-primary);
     font-weight: bold;
   }
   .cost{
     margin-left: .25rem;
-    font-size: 1rem;
+    font-size: .9rem;
     color: var(--color-text-primary);
     font-weight: bold;
   }
