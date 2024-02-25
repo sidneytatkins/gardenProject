@@ -6,8 +6,19 @@
 // IMPORTS
 import * as THREE from 'three';
 import Garden from './garden.js';
-let gard = new Garden(2, 2, "Fuckface", 3);
-gard.print();
+import Plant from './garden.js';
+import Building from './garden.js';
+import Grid from './grid.js';
+
+// initialize garden objects
+const tree = new Plant(2, 2, 'tree', 10);
+const rock = new Garden(1, 1, 'rock', 3);
+const house = new Building(4, 4, 'house', 25);
+const flower = new Plant(1, 1, 'flower', 5);
+const path = new Garden(5, 1, 'path', 15);
+
+// make grid
+const grid = new Grid(10, 10);
 
 // SCENE SET UP
 const scene = new THREE.Scene();
@@ -27,11 +38,11 @@ var size = 10;
 var colorGrid1= "#75d45f";
 var colorGrid2= "#6ec25b";
 var alternate;
-if (size%2 == 0)
+if (size % 2 == 0)
 {
   alternate = false;
 }
-else { alternate= true }; 
+else { alternate = true }; 
 // SCENE SET UP COMPLETE
 
 // GRID POPULATION
@@ -104,7 +115,7 @@ window.onmousemove = function(ev)
 var flatCubes =  cubesArray.reduce((acc, val) => acc.concat(val), []);
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
-
+var index = null;
 window.addEventListener('mousemove', function(event) 
 {
   // Calculate mouse position in normalized device coordinates (-1 to +1) for both components
@@ -120,7 +131,7 @@ function rayCastHandler()
   for (var i = 0; i < intersects.length; i++)
   {
     var intObj = intersects[i].object;
-    var index = null;
+    index = null;
     for (var j = 0; j < cubesArray.length;j++)
     {
       var sub = cubesArray[j].indexOf(intObj);
@@ -141,6 +152,14 @@ window.onresize = function(e)
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth,window.innerHeight);
 }
+
+window.addEventListener('click', function(event) 
+{
+  if (index !== null)
+  {
+    // place object at index cubesArray[index].position
+  }
+}, false);
 
 // Animation loop
 function animate() {
