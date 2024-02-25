@@ -23,7 +23,7 @@ const grid = new Grid(10, 10);
 // SCENE SET UP
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("#b5e6df");
-scene.fog = new THREE.Fog( "#ffffff", 10, 55 );
+scene.fog = new THREE.Fog( "#ffffff", 10, 35 );
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.z = 7;
 camera.position.y = -.5;
@@ -80,16 +80,14 @@ var block = new THREE.BoxGeometry(1,1,1);
 
 // GRID MANIPULATION
 scene.add(cubeGroup);
-cubeGroup.rotation.z = 0;  
-cubeGroup.rotation.x = 0;
 var reference = cubeGroup;
-camera.position.set(cubeGroup.position.x , cubeGroup.position.y, size + 10);
+camera.position.set(cubeGroup.position.x + size / 2 - .5, cubeGroup.position.y, size + 10);
 
 // LIGHTS
 var light = new THREE.AmbientLight("#bbf2f0",2);
 var directionalLight = new THREE.DirectionalLight(0xffffff, 3);
 
-directionalLight.position.set(0, 0, 10);
+directionalLight.position.set(0, -10, 6);
 directionalLight.rotation.z = 45;
 
 scene.add(directionalLight);
@@ -142,7 +140,7 @@ function rayCastHandler()
         break;
       }
     }
-    console.log(index);
+    
   }
 }
 
@@ -154,12 +152,39 @@ window.onresize = function(e)
   renderer.setSize(window.innerWidth,window.innerHeight);
 }
 
-window.addEventListener('click', function(event) 
-{
-  if (index !== null)
-  {
-    // place object at index cubesArray[index].position
+const loader = new GLTFLoader();
+window.fileName = "";
+window.placeable = false;
+window.addEventListener('click', function(event) {
+  if(placeable){
+    if (index != null)
+    {
+      // create boolean placing to check if you are able to place(only if in grid or if in )
+      //create another variable that is a string, provides the director of the model.
+      placeable = false;
+      loader.load(
+        window.fileName,
+        function (gltf) {
+          // When the model is loaded, add it to the existing scene
+          gltf.scene.position.x = cubesArray[index[0]][index[1]].position.x -size / 2;
+          gltf.scene.position.y = cubesArray[index[0]][index[1]].position.y - size / 2;
+          cube.position.z = 0.5;
+          scene.add(gltf.scene);
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
+      // var geometry = new THREE.BoxGeometry(1, 1, 1);
+      // var material = new THREE.MeshLambertMaterial({ color: colorGrid2 });
+      // var cube = new THREE.Mesh(geometry, material);
+   
+  
+      // place object at index cubesArray[index].position
+    }
   }
+ 
 }, false);
 
 // Animation loop
@@ -178,19 +203,6 @@ animate();
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // Create a GLTFLoader
-const loader = new GLTFLoader();
 
-// Load your model
-loader.load(
-  'untitqled.glb',
-  function (gltf) {
-    // When the model is loaded, add it to the existing scene
-    gltf.scene.position.set(0, 0, 10);
 
-    scene.add(gltf.scene);
-  },
-  undefined,
-  function (error) {
-    console.error(error);
-  }
-);
+
