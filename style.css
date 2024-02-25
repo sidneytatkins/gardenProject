@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:wght@500&family=Poppins&family=Source+Code+Pro:wght@500&display=swap');
+
+:root{
+     --color-primary: rgb(244, 235, 235);
+     --color-text-primary: #191c1a;
+     --color-secondary: #56da82;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Kanit', sans-serif;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Header*/
+
+#header-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--color-primary);
+    width: 100%;
+    height: 6rem;
+    font-family: 'Kanit', sans-serif;
+}
+#layout{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#title{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+#button-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 25rem;
+
+}
+
+#shopButton{
+    background-color: var(--color-secondary);
+    color: var(--color-text-primary);
+    border: none;
+    width: 8rem;
+    height: 3rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+   
+}
+#shopButton:hover{
+    background-color: var(--color-text-primary);
+    color: var(--color-secondary);
+    border: .25rem;
+    border-style: solid;
+    border-color: var(--color-secondary);
+    width: 8rem;
+    height: 3rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+   
+}
+#invButton{
+    background-color: var(--color-secondary);
+    color: var(--color-text-primary);
+    border: none;
+    width: 8rem;
+    height: 3rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    
+}
+
+#invButton:hover{
+    background-color: var(--color-text-primary);
+    color: var(--color-secondary);
+    border: .25rem;
+    border-style: solid;
+    border-color: var(--color-secondary);
+    width: 8rem;
+    height: 3rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+   
+}
+
+#settingsButton{
+    background: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    fill: var(--color-text-primary);
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+#settingsButton:hover{
+    transform: rotate(90deg);
+    transition: all .3s ease-in-out;
+}
+
+#settingsButton svg{
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
+@keyframes progress {
+    0% {
+      stroke-dasharray: 0 365;
+    }
+    100% {
+      stroke-dasharray: 365 365;
+    }
+  }
+  
+  .progress-ring__circle {
+    transition: 0.35s stroke-dashoffset;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    stroke-dasharray: 0 365;
+    stroke-dashoffset: 0;
+    animation: progress 10s linear infinite forwards;
+
+  }
+
+
+  #middle-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37rem;
+    width: 100%;
+    margin-top: 2rem;
+    
+
+  }
+
+  #timer-layout{
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    width: 28rem;
+    height: 24rem;
+    background-color: var(--color-primary);
+    border-radius: 2rem;
+   
+    border-width: .3rem;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  #time-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 13rem;
+   
+  }
+
+  #timerP{
+    font-size: 8.5rem;
+  }
+
+
+  #startButton{
+    background-color: var(--color-secondary);
+    color: var(--color-text-primary);
+    border: none;
+    width: 14rem;
+    height: 5rem;
+    border-radius: 3rem;
+    font-size: 2rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+  }
+  
+  #startButton:hover{
+    background-color: var(--color-text-primary);
+    color: var(--color-secondary);
+    border: .25rem;
+    border-style: solid;
+    border-color: var(--color-secondary);
+    width: 14rem;
+    height: 5rem;
+    border-radius: 3rem;
+    font-size: 2rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+  }
+
+  #status-container{
+    
+    width: 80%;
+    height: 1rem;
+    background-color: var(--color-text-primary);
+    border-radius: .25rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+   
+  }
+  #progression-bar{
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-secondary);
+    border-radius: .25rem;
+  }
+
+
+
+
