@@ -8,3 +8,5 @@
 Sidney Atkins
 Dennis Cejvan
 Eric J. Newton
+
+HackIllinois 2024
