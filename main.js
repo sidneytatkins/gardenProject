@@ -9,13 +9,19 @@ import Garden from './garden.js';
 import Plant from './garden.js';
 import Building from './garden.js';
 import Grid from './grid.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // initialize garden objects
-const tree = new Plant(2, 2, 'tree', 10);
-const rock = new Garden(1, 1, 'rock', 3);
-const house = new Building(4, 4, 'house', 25);
-const flower = new Plant(1, 1, 'flower', 5);
-const path = new Garden(5, 1, 'path', 15);
+var tree;
+// const tree = new Plant(2, 2, 'tree', 10);
+var rock;
+var house;
+var flower;
+var path;
+// const rock = new Garden(1, 1, 'rock', 3);
+// const house = new Building(4, 4, 'house', 25);
+// const flower = new Plant(1, 1, 'flower', 5);
+// const path = new Garden(5, 1, 'path', 15);
 
 // make grid
 const grid = new Grid(10, 10);
@@ -23,11 +29,11 @@ const grid = new Grid(10, 10);
 // SCENE SET UP
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("#b5e6df");
-scene.fog = new THREE.Fog( "#ffffff", 10, 35 );
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+scene.fog = new THREE.Fog( "#ffffff", 10, 45 );
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.z = 7;
-camera.position.y = -.5;
-camera.rotateX(0.25);
+camera.position.y = -10.5;
+camera.rotateX(0.85);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -79,7 +85,7 @@ var block = new THREE.BoxGeometry(1,1,1);
 // GRID MANIPULATION
 scene.add(cubeGroup);
 var reference = cubeGroup;
-camera.position.set(cubeGroup.position.x + size / 2 - .5, cubeGroup.position.y, size + 10);
+camera.position.set(cubeGroup.position.x + size / 2 - .5, cubeGroup.position.y - 13, size + 8);
 
 // LIGHTS
 var light = new THREE.AmbientLight("#bbf2f0",2);
@@ -153,33 +159,48 @@ window.onresize = function(e)
 const loader = new GLTFLoader();
 window.fileName = "";
 window.placeable = false;
+var val = 0;
 window.addEventListener('click', function(event) {
   if(placeable){
-    
+    val++;
     if (index != null)
     {
       // create boolean placing to check if you are able to place(only if in grid or if in )
       //create another variable that is a string, provides the director of the model.
       console.log(window.fileName);
-      placeable = false;
-      loader.load(
-        window.fileName,
-        function (gltf) {
-          // When the model is loaded, add it to the existing scene
-          var cube = cubesArray[index[0]][index[1]];
-          var box = new THREE.Box3().setFromObject(cube);
+      
+      if(val == 2){
+        if(window.fileName == "tree"){
+          addTree(index[0],index[1]);
+        }
+        if(window.fileName == "rock"){
+          addRock(index[0],index[1]);
+        }
+        if(window.fileName == "flower"){
+          addFlower(index[0],index[1]);
+        }
+        if(window.fileName == "house"){
+          addHouse(index[0],index[1]);
+        }
+        if(window.fileName == "path"){
+          addPath(index[0],index[1]);
+        }
+        // var cube = cubesArray[index[0]][index[1]];
+        // var box = new THREE.Box3().setFromObject(cube);
 
-          var center = new THREE.Vector3();
-          box.getCenter(center);
-          gltf.scene.position.copy(center);
-          gltf.scene.position.x += gltf.scene.scale.x/3.5;
-          gltf.scene.position.y -= .1;
-          gltf.scene.position.z = 0.5;
-          gltf.scene.scale.set(0.3, 0.3, 0.3);
-          console.log(gltf.scene.position);
-          scene.add(gltf.scene);
-        
-        });
+        // var center = new THREE.Vector3();
+        // box.getCenter(center);
+        // gltf.scene.position.copy(center);
+        // gltf.scene.position.x += gltf.scene.scale.x/3.5;
+        // gltf.scene.position.y -= .1;
+        // gltf.scene.position.z = 0.5;
+        // gltf.scene.scale.set(0.3, 0.3, 0.3);
+          placeable = false;
+          val = 0;
+
+
+      }
+      
       // var geometry = new THREE.BoxGeometry(1, 1, 1);
       // var material = new THREE.MeshLambertMaterial({ color: colorGrid2 });
       // var cube = new THREE.Mesh(geometry, material);
@@ -190,6 +211,89 @@ window.addEventListener('click', function(event) {
   }
  
 }, false);
+
+//Set up all objects\\
+  loader.load(
+  "tree.glb",
+  function (gltf) {
+    // When the model is loaded, add it to the existing scene
+    tree = gltf.scene;
+  
+  });
+  loader.load(
+  "rock.glb",
+  function (gltf) {
+    // When the model is loaded, add it to the existing scene
+    rock = gltf.scene;
+  
+  });
+  loader.load(
+    "flower.glb",
+    function (gltf) {
+      // When the model is loaded, add it to the existing scene
+      flower = gltf.scene;
+    
+    });
+    loader.load(
+      "house.glb",
+      function (gltf) {
+        // When the model is loaded, add it to the existing scene
+        house = gltf.scene;
+      
+      });
+      loader.load(
+        "path.glb",
+        function (gltf) {
+          // When the model is loaded, add it to the existing scene
+          path = gltf.scene;
+        
+        });
+  
+function addTree(x,y){
+
+  grid.add(x,y,1,1,'tree');
+
+  var clone = tree.clone();
+  clone.position.set(x,y,.5);
+  clone.rotateX(1.5708);
+  clone.scale.set(0.3, 0.3, 0.3);
+  scene.add(clone);
+}
+function addRock(x,y){
+  grid.add(x,y,1,1,'rock');
+  var clone = rock.clone();
+  clone.position.set(x,y,.75);
+  clone.rotateX(1.5708);
+  clone.scale.set(0.3, 0.3, 0.3);
+  scene.add(clone);
+
+}
+function addFlower(x,y){
+  grid.add(x,y,1,1,'flower');
+  var clone = flower.clone();
+  clone.position.set(x,y,.5);
+  clone.scale.set(0.4, 0.4, 0.4);
+  clone.rotateX(1.5708);
+  scene.add(clone);
+  
+}
+function addHouse(x,y){
+  grid.add(x,y,1,1,'house');
+  var clone = house.clone();
+  clone.position.set(x,y,.5);
+  clone.scale.set(0.4, 0.4, 0.4);
+  clone.rotateX(1.5708);
+  scene.add(clone);
+}
+function addPath(x,y){
+  grid.add(x,y,1,1,'path');
+  var clone = path.clone();
+  clone.position.set(x,y,.5);
+  clone.scale.set(1, 1, 1);
+  clone.rotateX(1.5708);
+  scene.add(clone);
+}
+
 
 // Animation loop
 function animate() {
@@ -204,7 +308,6 @@ function animate() {
 // Start the animation loop
 animate();
 
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 // Create a GLTFLoader
 

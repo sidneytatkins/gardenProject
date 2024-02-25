@@ -38,7 +38,7 @@ flowerStorageCount.textContent = 'x' + (window.purchasedItems[key4] || 0);
 pathStorageCount.textContent = 'x' + (window.purchasedItems[key5] || 0);
 
 import anime from 'animejs/lib/anime.es.js';
-window.coinButton.textContent = window.coins;
+window.coinButton.textContent = "$" + window.coins;
 
 // coinButton.addEventListener('click', function(){
 //     coinButton.textContent(window.coins);
@@ -52,7 +52,7 @@ shopButton1.addEventListener('click', function(){
         window.purchasedItems[key1] = (window.purchasedItems[key1] || 0) + 1; // Increment the count
         console.log(window.coins);
         console.log(window.purchasedItems);
-        coinButton.textContent = window.coins;
+        window.coinButton.textContent = "$" + window.coins;
         treeStorageCount.textContent = 'x' + window.purchasedItems[key1];
 
     }
@@ -67,7 +67,7 @@ shopButton2.addEventListener('click', function(){
         window.purchasedItems[key2] = (window.purchasedItems[key2] || 0) + 1; // Increment the count
         console.log(window.coins);
         console.log(window.purchasedItems);
-        coinButton.textContent = window.coins;
+        window.coinButton.textContent = "$" + window.coins;
         rockStorageCount.textContent = 'x' + window.purchasedItems[key2];
 
         
@@ -83,7 +83,7 @@ shopButton3.addEventListener('click', function(){
         window.purchasedItems[key3] = (window.purchasedItems[key3] || 0) + 1; // Increment the count
         console.log(window.coins);
         console.log(window.purchasedItems);
-        coinButton.textContent = window.coins;
+        window.coinButton.textContent = "$" + window.coins;
         houseStorageCount.textContent = 'x' + window.purchasedItems[key3];
 
     }
@@ -98,7 +98,7 @@ shopButton4.addEventListener('click', function(){
         window.purchasedItems[key4] = (window.purchasedItems[key4] || 0) + 1; // Increment the count
         console.log(window.coins);
         console.log(window.purchasedItems);
-        coinButton.textContent = window.coins;
+        window.coinButton.textContent = "$" + window.coins;
         flowerStorageCount.textContent = 'x' + window.purchasedItems[key4];
 
     }
@@ -113,7 +113,7 @@ shopButton5.addEventListener('click', function(){
         window.purchasedItems[key5] = (window.purchasedItems[key5] || 0) + 1; // Increment the count
         console.log(window.coins);
         console.log(window.purchasedItems);
-        coinButton.textContent = window.coins;
+        window.coinButton.textContent = "$" + window.coins;
         pathStorageCount.textContent = 'x' + window.purchasedItems[key5];
 
     }
@@ -206,7 +206,7 @@ storageButton1.addEventListener('click', function(){
     if (window.purchasedItems.hasOwnProperty(key1) && window.purchasedItems[key1] > 0) {
         window.purchasedItems[key1]--; // Decrement the count
         console.log("object created");
-        window.fileName = "untitqled.glb";
+        window.fileName = "tree";
         window.placeable = true;
 
         treeStorageCount.textContent = 'x' + window.purchasedItems[key1];
@@ -220,7 +220,8 @@ storageButton2.addEventListener('click', function(){
     if (window.purchasedItems.hasOwnProperty(key2) && window.purchasedItems[key2] > 0) {
         window.purchasedItems[key2]--; // Decrement the count
         console.log("object created");
-
+        window.fileName = "rock";
+        window.placeable = true;
         rockStorageCount.textContent = 'x' + window.purchasedItems[key2];
 
     }
@@ -232,6 +233,8 @@ storageButton3.addEventListener('click', function(){
     if (window.purchasedItems.hasOwnProperty(key3) && window.purchasedItems[key3] > 0) {
         window.purchasedItems[key3]--; // Decrement the count
         console.log("object created");
+        window.fileName = "house";
+        window.placeable = true;
 
         houseStorageCount.textContent = 'x' + window.purchasedItems[key3];
 
@@ -244,6 +247,8 @@ storageButton4.addEventListener('click', function(){
     if (window.purchasedItems.hasOwnProperty(key4) && window.purchasedItems[key4] > 0) {
         window.purchasedItems[key4]--; // Decrement the count
         console.log("object created");
+        window.fileName = "flower";
+        window.placeable = true;
 
         flowerStorageCount.textContent = 'x' + window.purchasedItems[key4];
 
@@ -256,7 +261,8 @@ storageButton5.addEventListener('click', function(){
     if (window.purchasedItems.hasOwnProperty(key5) && window.purchasedItems[key5] > 0) {
         window.purchasedItems[key5]--; // Decrement the count
         console.log("object created");
-
+        window.fileName = "path";
+        window.placeable = true;
         pathStorageCount.textContent = 'x' + window.purchasedItems[key5];
 
     }

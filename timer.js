@@ -120,7 +120,7 @@ function timer() {
 
         window.coins += Math.pow(focusTime, 1.05);
         window.coins = Math.round(window.coins);
-        window.coinButton.textContent = window.coins;
+        window.coinButton.textContent = "$" + window.coins;
         tip.innerHTML = "you did it! you earned: " + Math.round(Math.pow(focusTime,1.05)) +" coin(s)!";
         console.log(`current coins: ${window.coins}`);
     }
