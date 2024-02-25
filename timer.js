@@ -74,7 +74,7 @@ document.addEventListener('mousemove', function() {
     let check = document.getElementById('shop-container');
     let check2 = document.getElementById('storage-container');
     let div = document.getElementById('timer-layout');
-    if(check.style.opacity == 0 && check2.style.opacity == 0){
+    if(!window.initializedShop){
         clearTimeout(timeout);
 
         // Get the div
@@ -85,8 +85,11 @@ document.addEventListener('mousemove', function() {
     
         // Set a new timeout
         timeout = setTimeout(function() {
-            div.style.opacity = 0.4; 
-        }, 10000); 
+            if(!window.initializedShop){
+                div.style.opacity = 0.4; 
+            }
+           
+        }, 1000); 
     }else{
         div.style.opacity = 0;
     }

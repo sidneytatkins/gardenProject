@@ -74,12 +74,14 @@ for (var i = 0; i < size; i++)
   cubesArray.push(row);
 }
 
+cubeGroup.position.set(-size / 2, -size / 2, 0);
+
 var block = new THREE.BoxGeometry(1,1,1);
 
 // GRID MANIPULATION
 scene.add(cubeGroup);
-cubeGroup.rotation.z = 0.785398;  
-cubeGroup.rotation.x = -0.3872665;
+cubeGroup.rotation.z = 0;  
+cubeGroup.rotation.x = 0;
 var reference = cubeGroup;
 camera.position.set(cubeGroup.position.x , cubeGroup.position.y, size + 10);
 
@@ -106,7 +108,6 @@ window.onmousemove = function(ev)
       camera.position.y -= changey/2000;
       oldx = ev.x;
       oldy = ev.y;
- 
 }
 
 //RAYCASTING
@@ -173,3 +174,23 @@ function animate() {
 
 // Start the animation loop
 animate();
+
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+// Create a GLTFLoader
+const loader = new GLTFLoader();
+
+// Load your model
+loader.load(
+  'untitqled.glb',
+  function (gltf) {
+    // When the model is loaded, add it to the existing scene
+    gltf.scene.position.set(0, 0, 10);
+
+    scene.add(gltf.scene);
+  },
+  undefined,
+  function (error) {
+    console.error(error);
+  }
+);

@@ -1,6 +1,7 @@
 window.coins += 100; 
 console.log(window.coins);
 window.purchasedItems = {};
+window.initializedShop = false;
 const shopButton1 = document.querySelector('#tree-item');
 const shopButton2 = document.querySelector('#rock-item');
 const shopButton3 = document.querySelector('#house-item');
@@ -101,6 +102,7 @@ settingsButton.addEventListener('click', function(){
     if(shopContainer.style.opacity != "1"){
         shopContainer.style.opacity = "1";
         storageContainer.style.opacity = "0";
+        window.initializedShop = true;
         
         anime ({
             targets: timeFrame,
@@ -110,6 +112,7 @@ settingsButton.addEventListener('click', function(){
          });
 
    }else { shopContainer.style.opacity = "0";
+        window.initializedShop = true;
         anime ({
             targets: timeFrame,
             opacity: 1,
@@ -123,6 +126,7 @@ settingsButton.addEventListener('click', function(){
  storageMainButton.addEventListener('click', function(){
     if(storageContainer.style.opacity != "1"){
         storageContainer.style.opacity = "1";
+        window.initializedShop = true;
         shopContainer.style.opacity = "0";
         anime ({
             targets: timeFrame,
@@ -133,6 +137,7 @@ settingsButton.addEventListener('click', function(){
 
    }else { 
         storageContainer.style.opacity = "0";
+        window.initializedShop = false;
         anime ({
             targets: timeFrame,
             opacity: 1,
