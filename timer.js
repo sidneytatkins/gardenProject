@@ -99,10 +99,10 @@ function timer() {
         clearInterval(intervalId);
         closeBar();
         const focusTime = Number(focusTimeHTML.value);
-        coins += Math.pow(focusTime, 1.05);
-        coins = Math.round(coins);
-        tip.innerHTML = "you did it! you earned: " + coins +" coin(s)!";
-        console.log(`current coins: ${coins}`);
+        window.coins += Math.pow(focusTime, 1.05);
+        window.coins = Math.round(window.coins);
+        tip.innerHTML = "you did it! you earned: " + window.coins +" coin(s)!";
+        console.log(`current coins: ${window.coins}`);
     }
 }
 

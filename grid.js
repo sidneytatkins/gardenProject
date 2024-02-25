@@ -1,3 +1,4 @@
+
 // GRID
 class Grid
 {
@@ -128,6 +129,9 @@ class Grid
         }
     }
 }
+
+// export Grid class
+export default Grid;
 
 // create Grid
 const grid_test = new Grid(5, 5);
