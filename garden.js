@@ -1,11 +1,14 @@
+import * as THREE from 'three';
+
 // GARDEN
-// parent object of Building, Landscape, & Plant
-class Garden
+// parent object of Building & Plant
+class Garden extends THREE.Object3D
 {
     // define constructor with default values,
     // use set methods to initialize variables
     constructor(length = 1, width = 1, name = 'untitled', price = 1)
     {
+        super();
         this.set_length(length);
         this.set_width(width);
         this.set_name(name);
@@ -211,34 +214,23 @@ class Plant extends Garden
     }
 }
 
-// // create Garden
-// const garden_test = new Garden(1, 1, 'Rock', 7);
+// export Garden class
+export default Garden;
 
-// // print Garden
-// garden_test.print();
+// create Garden
+const garden_test = new Garden(1, 1, 'Rock', 7);
 
-// // create Building
-// const building_test = new Building(3, 3, 'House', 100, 1, 10, 'red', 5);
+// print Garden
+garden_test.print();
 
-// // print Building
-// building_test.print();
+// create Building
+const building_test = new Building(3, 3, 'House', 100, 1, 10, 'red', 5);
 
-// // create Plant
-// const plant_test = new Plant(1, 1, 'Rose', 3, 1, 3);
+// print Building
+building_test.print();
 
-// // print Plant
-// plant_test.print();
+// create Plant
+const plant_test = new Plant(1, 1, 'Rose', 3, 1, 3);
 
-// const garden = new Garden(1, 1, 'Rock', 7);
-// const gardenJson = JSON.stringify(garden);
-// localStorage.setItem('garden', gardenJson);
-
-// const gardenJson2 = localStorage.getItem('garden');
-// console.log(gardenJson2);
-// const garden2 = JSON.parse(gardenJson2);
-// console.log(garden2);
-// JavaScript
-// JavaScript
-// server.js
-
-
+// print Plant
+plant_test.print();
