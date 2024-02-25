@@ -70,18 +70,27 @@ setButton.addEventListener('click', function(){
 let timeout = null;
 
 document.addEventListener('mousemove', function() {
-    clearTimeout(timeout);
 
-    // Get the div
+    let check = document.getElementById('shop-container');
+    let check2 = document.getElementById('storage-container');
     let div = document.getElementById('timer-layout');
+    if(check.style.opacity == 0 && check2.style.opacity == 0){
+        clearTimeout(timeout);
 
-    // Reset the opacity
-    div.style.opacity = 1;
-
-    // Set a new timeout
-    timeout = setTimeout(function() {
-        div.style.opacity = 0.4; 
-    }, 10000); 
+        // Get the div
+        
+    
+        // Reset the opacity
+        div.style.opacity = 1;
+    
+        // Set a new timeout
+        timeout = setTimeout(function() {
+            div.style.opacity = 0.4; 
+        }, 10000); 
+    }else{
+        div.style.opacity = 0;
+    }
+   
 });
 
 

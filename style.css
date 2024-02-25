@@ -49,7 +49,7 @@ canvas {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 25rem;
+    width: 30rem;
 
 }
 
@@ -133,6 +133,22 @@ canvas {
     transition: all .3s ease-in-out;
 }
 
+#coinDisplay{
+  background-color: var(--color-text-primary);
+  color: var(--color-secondary);
+  border: .25rem;
+  border-style: solid;
+  border-color: var(--color-secondary);
+  width: 8rem;
+  height: 3rem;
+  border-radius: 3rem;
+  font-size: 1.1rem;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
+  
+  transition: all .1s ease-in-out;
+  text-align: center;
+}
 #settingsButton svg{
     width: 2.25rem;
     height: 2.25rem;
@@ -265,7 +281,7 @@ canvas {
     left: 0;
     bottom: 0; 
     background-color: #191c1a7d;
-    opacity: 1;
+    opacity: 0; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -323,7 +339,70 @@ canvas {
     
   }
 
-
+  #storage-container{
+    width: 100%;
+    height: 8rem;
+    position: fixed;
+    left: 0;
+    bottom: 0; 
+    background-color: #191c1a7d;
+    opacity: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .4rem;
+  }
+  #tree-storage{
+    width: 7rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #rock-storage{
+    width: 7rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #house-storage{
+    width: 7rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #flower-storage{
+    width: 7rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #path-storage{
+    width: 7rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
   .name{
     margin-left: .25rem;
     font-size: 1.5rem;
@@ -335,15 +414,15 @@ canvas {
     font-size: .9rem;
     color: var(--color-text-primary);
     font-weight: bold;
-  }
+  } 
 
   #settings-layout{
-    display: flex;
+    display: none;
     
     flex-direction: column;
     align-items: center;
     width: 28rem;
-    height: 24rem;
+    height: 12rem;
     background-color: var(--color-primary);
     border-radius: 2rem;
    
@@ -413,6 +492,20 @@ canvas {
     transition: all .1s ease-in-out;
     margin-right: 1rem;
   }
+  #setButton:hover{
+    background-color: var(--color-text-primary);
+    color: var(--color-secondary);
+    border: .25rem;
+    border-style: solid;
+    border-color: var(--color-secondary);
+    
+    border-radius: 3rem;
+   
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+  }
   #minutesInput{
     width: 7rem;
     height: 2.25rem;
@@ -423,6 +516,7 @@ canvas {
     font-family: 'Kanit', sans-serif;
     font-weight: 500;
   }
+
 
 
 
