@@ -7,8 +7,9 @@ const setButton = document.querySelector('#setButton');
 const focusTimeHTML = document.querySelector('#minutesInput');
 const progressBar = document.querySelector('#progression-bar');
 const progressContainer = document.querySelector('#status-container');
+const tip = document.querySelector('#tip');
 let timeLeft;
-let coins = 0; 
+window.coins = 0; 
 
 
 startButton.addEventListener('click', function(){
@@ -19,19 +20,28 @@ startButton.addEventListener('click', function(){
         return;
     }
     
-    animateBar(focusTime);
+    
     if (startButton.textContent == 'Start'){
-        
-    startButton.textContent = 'Give up';
-    timeLeft = focusTime;
-    console.log(`timeLeft: ${timeLeft}`); // Log the value of timeLeft
-    intervalId = setInterval(timer, 1000);
-} else {
-    closeBar();
+        progressBar.style.width = '0%';
+        animateBar(focusTime);
+        tip.innerHTML = "Current session rewards: " + Math.round(Math.pow(Number(focusTimeHTML.value), 1.05)) + " coin(s)";
+        startButton.textContent = 'Give up';
+        timeLeft = focusTime;
+        console.log(`timeLeft: ${timeLeft}`); // Log the value of timeLeft
+        intervalId = setInterval(timer, 1000);
+    } else {
+    closeBar(); 
+    progressBar.style.width = '0%';
+    tip.innerHTML = "You lost out on your reward! Try again!";
     startButton.textContent = 'Start';
-    timerP.textContent = `${focusTimeHTML.value}:00`;
+
+    const minutes = Math.floor((focusTime) / 60);
+    const seconds = Math.floor((focusTime) % 60);
+    timerP.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+   
     clearInterval(intervalId);
-}
+    progressBar.style.width = '0%';
+    }
 });
 setButton.addEventListener('click', function(){
     const focusTime = Number(focusTimeHTML.value);
@@ -39,15 +49,40 @@ setButton.addEventListener('click', function(){
         alert('Please enter a valid focus time in minutes');
         return;
     }
-    timerP.textContent = `${focusTime}:00`;
+
+    closeBar(); 
+    progressBar.style.width = '0%';
+    tip.innerHTML = "Do your best! You can do it!";
+    const minutes = Math.floor((focusTime * 60) / 60);
+    const seconds = Math.floor((focusTime * 60) % 60);
+    timerP.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+ 
 
     if (startButton.textContent == 'Give up'){
         clearInterval(intervalId);
-        startButton.textContent = 'Start Timer';
+        startButton.textContent = 'Start';
 
     }
 
-})
+});
+
+//INACTIVITY TIMER\\
+let timeout = null;
+
+document.addEventListener('mousemove', function() {
+    clearTimeout(timeout);
+
+    // Get the div
+    let div = document.getElementById('timer-layout');
+
+    // Reset the opacity
+    div.style.opacity = 1;
+
+    // Set a new timeout
+    timeout = setTimeout(function() {
+        div.style.opacity = 0.4; 
+    }, 10000); 
+});
 
 
 // calculates timer left in minutes and seconds, and outputs text to timerP paragraph element. if time is zero, reset
@@ -59,18 +94,22 @@ function timer() {
     const seconds = Math.floor(timeLeft % 60);
     timerP.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     if (timeLeft == 0) {
-        startButton.textContent = 'Start Timer';
+        startButton.textContent = 'Start';
+       
         clearInterval(intervalId);
+        closeBar();
         const focusTime = Number(focusTimeHTML.value);
         coins += Math.pow(focusTime, 1.05);
         coins = Math.round(coins);
+        tip.innerHTML = "You did it! You earned:" + coins +"!";
         console.log(`current coins: ${coins}`);
     }
 }
 
+
+
 function animateBar(x){
-    progressBar.style.width = '0%';
-    progressContainer.style.opacity = 0;
+   
     anime({
         targets: progressContainer,
         opacity: 1,
@@ -85,11 +124,18 @@ function animateBar(x){
     });
  
 }
-function closeBar(x){
+function closeBar(){
     
     anime({
         targets: progressContainer,
         opacity: 0,
+        easing: 'easeInOutQuad',
+        duration: 1000
+    });
+    
+    anime({
+        targets: progressBar,
+        width: "0%",
         easing: 'easeInOutQuad',
         duration: 1000
     });

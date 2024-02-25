@@ -4,6 +4,7 @@
      --color-primary: rgb(244, 235, 235);
      --color-text-primary: #191c1a;
      --color-secondary: #56da82;
+     --color-third: #32af5c;
 }
 
 body {
@@ -181,6 +182,11 @@ canvas {
     border-width: .3rem;
     border-top-left-radius: 0;
     border-bottom-right-radius: 0;
+    transition: all 0.5s linear;
+  }
+  #timer-layout.dimmed{
+    opacity: .4;
+    transition: all 0.25s linear;
   }
 
   #time-container{
@@ -243,6 +249,92 @@ canvas {
     background-color: var(--color-secondary);
     border-radius: .25rem;
   }
+
+  #tip{
+    font-size: 1.2rem;
+  }
+  #highlight{
+    color: var(--color-third);
+    
+  }
+
+  #shop-container{
+    width: 100%;
+    height: 10rem;
+    background-color: var(--color-text-primary);
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .4rem;
+  }
+  #tree-item{
+    width: 9rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #rock-item{
+    width: 9rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #flower-item{
+    width: 9rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #path-item{
+    width: 9rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+  #house-item{
+    width: 9rem;
+    height: 95%;
+    background-color: var(--color-secondary);
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    border-radius: .5rem;
+    
+  }
+
+
+  .name{
+    margin-left: .25rem;
+    font-size: 2rem;
+    color: var(--color-text-primary);
+    font-weight: bold;
+  }
+  .cost{
+    margin-left: .25rem;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    font-weight: bold;
+  }
+
+
 
 
 
